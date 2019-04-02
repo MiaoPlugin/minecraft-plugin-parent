@@ -18,27 +18,33 @@
             <timezone>Asia/Shanghai</timezone>
         </contributor>
     </contributors>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <repo.url>https://repo.yumc.pw</repo.url>
+    </properties>
     <ciManagement>
         <system>Jenkins</system>
-        <url>http://ci.yumc.pw/job/${project.artifactId}/</url>
+        <url>https://ci.yumc.pw/job/Minecraft/${project.artifactId}/</url>
     </ciManagement>
     <repositories>
         <repository>
             <id>yumc-repo</id>
-            <url>https://repo.yumc.pw/repository/maven-public/</url>
+            <url>${repo.url}/repository/maven-public/</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>yumc-repo</id>
-            <url>https://repo.yumc.pw/repository/maven-public/</url>
+            <url>${repo.url}/repository/maven-public/</url>
         </pluginRepository>
     </pluginRepositories>
     <distributionManagement>
         <repository>
             <id>jtb</id>
             <name>YUMC</name>
-            <url>https://repo.yumc.pw/repository/yumcenter/</url>
+            <url>${repo.url}/repository/yumcenter/</url>
         </repository>
     </distributionManagement>
     <dependencies>
@@ -59,38 +65,36 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.2.0</version>
-                    <configuration>
-                        <createDependencyReducedPom>false</createDependencyReducedPom>
-                        <minimizeJar>true</minimizeJar>
-                        <artifactSet>
-                            <includes>
-                                <include>pw.yumc:YumCore</include>
-                            </includes>
-                        </artifactSet>
-                        <relocations>
-                            <relocation>
-                                <pattern>pw.yumc.YumCore</pattern>
-                                <shadedPattern>${project.groupId}.${project.artifactId}</shadedPattern>
-                            </relocation>
-                        </relocations>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>package</phase>
-                            <goals>
-                                <!--suppress MybatisMapperXmlInspection -->
-                                <goal>shade</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <minimizeJar>true</minimizeJar>
+                    <artifactSet>
+                        <includes>
+                            <include>pw.yumc:YumCore</include>
+                        </includes>
+                    </artifactSet>
+                    <relocations>
+                        <relocation>
+                            <pattern>pw.yumc.YumCore</pattern>
+                            <shadedPattern>${project.groupId}.${project.artifactId}</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <!--suppress MybatisMapperXmlInspection -->
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>
