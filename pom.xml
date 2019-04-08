@@ -96,5 +96,31 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.wvengen</groupId>
+                    <artifactId>proguard-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>proguard</goal>
+                            </goals>
+                            <configuration>
+                                <options>
+                                    <option>-repackageclasses \ʼ.ʽ.ʾ.${project.artifactId}</option>
+                                    <option>-keep class ${project.groupId}.${project.artifactId}.${project.artifactId}</option>
+                                    <option>-keep class ${project.groupId}.${project.artifactId}.${project.artifactId}Bungee</option>
+                                </options>
+                                <libs>
+                                    <lib>${java.home}/lib/rt.jar</lib>
+                                </libs>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
