@@ -52,7 +52,7 @@
             <groupId>pw.yumc</groupId>
             <artifactId>YumCore</artifactId>
             <type>jar</type>
-            <version>[1.9.1,)</version>
+            <version>[1.9.6,)</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
