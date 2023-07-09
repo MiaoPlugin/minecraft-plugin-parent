@@ -52,7 +52,7 @@
             <groupId>pw.yumc</groupId>
             <artifactId>YumCore</artifactId>
             <type>jar</type>
-            <version>[1.9.6,)</version>
+            <version>[1.9.8,)</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -115,7 +115,8 @@
                                     <option>-keep class ${project.groupId}.${project.artifactId}.${project.artifactId}Bungee</option>
                                 </options>
                                 <libs>
-                                    <lib>${java.home}/lib/rt.jar</lib>
+                                    <lib>${java.home}/lib/</lib>
+                                    <lib>${java.home}/jmods/</lib>
                                 </libs>
                             </configuration>
                         </execution>
